@@ -1,0 +1,47 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+              document.getElementById("b1").click();
+           });
+          </script>
+        <style>
+            #b1
+            {
+                display:none;
+            }
+            body
+            {
+                overflow: hidden; /* Hide scrollbars */
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:35px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:250px;
+                border:1px solid white;
+                border-radius:10px;
+            }
+        </style>
+    </head>
+    <body>
+        {% if "manager" in request.session %}
+        <center>
+            <h4>
+            {% if msg %}
+                {{msg}}
+            {% else %}
+                Welcome back
+            {% endif %}
+            </h4>
+        </center>
+        {% else %}
+            <input type="button" name="b1" id="b1" onclick="window.location='/manager/managerlogin/'">
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

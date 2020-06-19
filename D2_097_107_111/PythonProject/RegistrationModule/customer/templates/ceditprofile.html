@@ -1,0 +1,47 @@
+{% extends 'base3.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+    <center>
+    <br>
+    <form action="/customer/editprofile/" method="post">{% csrf_token %}
+        <table>
+            <tr>
+                <td>Customer Username</td>
+                <td><input type="text" name="uname" value="{{cobj.c_username}}" required></td>
+            </tr>
+            <tr>
+                <td>Customer Name</td>
+                <td><input type="text" name="name" value="{{cobj.c_name}}" required></td>
+            </tr>
+            <tr>
+                <td>Customer Address</td>
+                <td><input type="text" name="address" value="{{cobj.c_address}}" required></td>
+            </tr>
+            <tr>
+                <td>Customer Email-ID</td>
+                <td><input type="email" name="email" value="{{cobj.c_email}}" required></td>
+            </tr>
+            <tr>
+                <td>Customer Password</td>
+                <td><input type="password" name="password" value="{{cobj.c_password}}" required></td>
+            </tr>
+            <tr>
+                <td>Customer Mobile-no</td>
+                <td><input type="text" name="mobileno" value="{{cobj.c_mobileno}}" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" class="button" name="submit" value="Edit">
+            </tr>
+        </table>
+    </form>
+    </center>
+    </div>
+    </body>
+</html>
+{% endblock %}

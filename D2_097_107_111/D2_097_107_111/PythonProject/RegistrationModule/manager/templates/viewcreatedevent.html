@@ -1,0 +1,85 @@
+{% extends 'base2.html'%}
+{% block content %}
+{% load mathfilters %}
+<html>
+    <head>
+        <style>
+            td
+            {
+                border:none;
+                padding:5px 10px;
+                text-align: center;
+                font-size: 20px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            h2
+            {
+                color:rgb(9, 9, 73);
+                font-size:50px;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            div.div
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        width:75%;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+        </style>
+    </head>
+    <body>
+    <center>
+    <h4>
+    <br>
+    <table>
+        <tr>
+            <td colspan="3"><center><h2>Created Events</h2></center></td>
+        </tr>
+        {% if eventobj %}
+            {% with i=0 %}
+            {% for each in eventobj %}
+                {% if forloop.counter|mod:"3" == 1%}
+                    <tr></tr>
+                <!--<td width="10%"><center>{{forloop.counter|intdiv:"3" |add:"1"}}</center></td>-->
+                {% endif %}
+                <td>
+                <center>
+                    <table border="7" style="border-color:rgb(255, 255, 255);">
+                        <tr><td><img height="200" width="200" src="{{media_url}}{{each.event_image}}" height="300" width="300"></td></tr>
+                        <tr><td>Event Name : {{each.event_name}}</td></tr>
+                        <tr><td>Event Venue :{{each.event_venue}}</td></tr>
+                        <tr><td>
+                            <form action="/manager/mmoredetails/" method="post">{% csrf_token %}
+                                <input type="hidden" name="eventid" value="{{each.event_ID}}">
+                                <input type="submit" name="submit" class="submit" value="More Details">
+                            </form>
+                        </td></tr>
+                    </table>
+                </center>
+                </td>
+            {% endfor %}
+            {% endwith %}
+        {% else %}
+        <table>
+            <tr>
+                <td><center><h3>No such Created Events is present.</h3></center></td>
+            </tr>
+        </table>
+        {% endif %}
+    </table>
+    </h4>
+    </center>
+    </body>
+</html>
+
+{% endblock %}

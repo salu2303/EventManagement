@@ -1,0 +1,198 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                document.getElementById("b1").click();
+            });
+        </script>
+        <style>
+            #b1
+            {
+                display:none;
+            }
+            h1
+            {
+                color:rgb(9, 9, 73);
+            }
+            h6{
+                font-size:25px;
+            }
+            #b1
+            {
+                display:none;
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:95%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            h4.h
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:70%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            td
+            {
+                padding:7px 10px;
+            }
+            td.t2
+            {
+                padding:15px 50px;
+            }
+            input.text
+            {
+                font-size: 20px;
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(9, 9, 73);
+                border-width:3px;
+            }
+            input.b1
+            {
+                padding:15px 20px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+<body>
+{% if "manager" in request.session %}{% csrf_token %}
+<center>
+    <h4>
+        <font>
+        <form action="/manager/updateevent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <table>
+            <tr>
+                <th colspan="2"><h1>Update Your Event</h1></th>
+            </tr>
+            <tr>
+                <td rowspan="8">
+                    <center>
+                        <img src="{{media_url}}{{eventobj.event_image}}" height="300" width="300"><br>Event Image
+                    </center>
+                </td>
+                <td rowspan="8">
+                <center>
+                <table>
+                <tr>
+                    <td class="t2">Event name:</td>
+                    <td class="t2"><input type="text" name="eventname" value="{{eventobj.event_name}}"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Event type:</td>
+                    <td class="t2"><input type="text" name="eventtype" value="{{eventobj.event_type}}"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Event duration:</td>
+                    <td class="t2"><input type="text" name="eventduration" value="{{eventobj.event_duration}}"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Event time:</td>
+                    <td class="t2"><input type="time" name="eventtime" min="01:00" max="12:00"  value="{{eventobj.event_time}}" step="1"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Event date:</td>
+                    <td class="t2"><input type="date" name="eventdate"  value="{{eventobj.event_date}}"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Event venue:</td>
+                    <td class="t2"><input type="text" name="eventvenue"  value="{{eventobj.event_venue}}"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Event description:</td>
+                    <td class="t2"><input type="text" name="eventdescription"  value="{{eventobj.event_description}}"></td>
+                </tr>
+                <tr>
+                    <td class="t2">Contatct no. :</td>
+                    <td class="t2"><input type="text" name="contactno" value="{{eventobj.event_contact_no}}"></td>
+                </tr>
+                </table>
+                </center>
+                </td>
+            </tr>
+            <input type="hidden" name="eventobj" value="{{eventobj.event_ID}}">
+
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+            <tr>
+            <!--Changing the extra images -->
+
+            <!--Changing the extra images -->
+                <td rowspan="5">
+                    <table>
+                        <tr>
+                            <td>Event Images:</td>
+                            {% for i in iobj %}
+                                <td><img src="{{media_url}}{{i.more_images}}" height="100" width="100"></td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Add Images: </td>
+                            <td><input type="file" name="images" accept="image/png , image/jpeg" multiple></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+            <tr>
+
+            <!--Changing the extra videos -->
+                <td rowspan="5">
+                    <table>
+                        <tr>
+                            <td>Event Videos:</td>
+                            {% for v in vobj %}
+                            <td>
+                                <video height="100" width="100" controls>
+                                    <source src="{{v.more_videos.url}}" type="video/mp4">
+                                </video>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Add videos: </td>
+                            <td><input type="file" name="videos" multiple></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+
+            <tr>
+                <td colspan="2"><center><input type="submit" class="b1" name="update" value="Update">
+                <input type="button" class="b1" name="cancel" value="Cancel" onclick="window.location='/manager/manageevent.html'"></center></td>
+            </tr>
+            </table>
+        </form>
+        </font>
+    </h4>
+</center>
+{% else %}
+    <input type="button" name="b1" id="b1" onclick="window.location='/manager/managerlogin/'">
+{% endif %}
+{% endblock %}
+</body>
+</html>

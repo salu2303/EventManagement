@@ -1,0 +1,65 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            table.ta
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        background-color:rgb(255,255,255,0.5);
+		        border: 3px solid rgb(9, 9, 73);
+		    }
+		    table.ta,td,th
+		    {
+		        border: 3px solid rgb(9, 9, 73);
+		    }
+		    div.div
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        width:75%;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+        </style>
+    </head>
+<body>
+{% if not manager %}
+    <center>
+    <div class="div">
+        <h2>No Manager does not exist...</h2>
+    </div>
+    </center>
+{% else %}
+<font color="white" style="font-size:30px;">
+    <center>
+    <table class="ta">
+        <tr>
+            <td colspan="6"><H2><center>View all your manager</center></H2></td>
+        </tr>
+        <tr>
+            <th>Manager Name</th>
+            <th>Manager Username</th>
+            <th>Manager Event-Type</th>
+            <th>Manager Address</th>
+            <th>Manager Mobile-no</th>
+            <th>Manager Email</th>
+        </tr>
+        {% for mobj in manager%}
+        <tr>
+            <td>{{mobj.m_name}}</td>
+            <td>{{mobj.m_username}}</td>
+            <td>{{mobj.m_event_type}}</td>
+            <td>{{mobj.m_address}}</td>
+            <td>{{mobj.m_mobileno}}</td>
+            <td>{{mobj.m_email}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+</font>
+</form>
+</body>
+</html>
+{% endif %}
+{% endblock %}

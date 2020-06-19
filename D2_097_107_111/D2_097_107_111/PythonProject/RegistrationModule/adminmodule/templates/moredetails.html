@@ -1,0 +1,123 @@
+{% extends 'base1.html'%}
+{% block content %}{{ csrf_input }}
+{% load mathfilters%}
+<html>
+<head>
+    <style>
+        table
+        {
+            border-color:rgb(26, 90, 0);
+            border-style: groove;
+            background-color: lightgreen;
+        }
+        table.T
+        {
+            color:rgb(4, 107, 26);
+        }
+        th
+        {
+            color:rgb(4, 39, 71);
+            background-color:rgb(129, 198, 230);
+        }
+    </style>
+</head>
+<body>
+    {% if eobj %}
+    <center>
+        <br>
+        <table height="100%" width="70%" >
+        <tr>
+            <th colspan="2"><font size="7" face="verdana"><b>{{eobj.event_name}}</b></font></th>
+        </tr>
+        <tr>
+            <td><img src="{{eobj.event_image.url}}" height="300" width="300"></td>
+            <td>
+            <table class="T" >
+                <tr>
+                    <td>Event ID :</td>
+                    <td>{{eobj.event_ID}}</td>
+                </tr>
+                <tr>
+                    <td>Event Type :</td>
+                    <td>{{eobj.event_type}}</td>
+                </tr>
+                <tr>
+                    <td>Event Date :</td>
+                    <td>{{eobj.event_date}}</td>
+                </tr>
+                <tr>
+                    <td>Event Duration :</td>
+                    <td>{{eobj.event_duration}}</td>
+                </tr>
+                <tr>
+                    <td>Event Time :</td>
+                    <td>{{eobj.event_time}}</td>
+                </tr>
+                <tr>
+                    <td>Event Venue :</td>
+                    <td>{{eobj.event_venue}}</td>
+                </tr>
+                <tr>
+                    <td>Event Description :</td>
+                    <td>{{eobj.event_description}}</td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            {% if vobj %}
+                {% for v in vobj %}
+                    {% if forloop.counter|mod:"2" == 1%}
+                        <tr></tr>
+                    {% endif %}
+                <td>
+                    <video height="300" width="300" controls>
+                        <source src="{{v.more_videos.url}}" type="video/mp4">
+                    </video>
+                </td>
+                {% endfor %}
+            {% else %}
+                <td><font color="rgb(4, 107, 26);">No Video has been uploaded..</font></td>
+            {% endif %}
+        </tr>
+
+        <tr>
+        {% if iobj %}
+            {% for i in iobj %}
+                {% if forloop.counter|mod:"2" == 1%}
+                    <tr></tr>
+                {% endif %}
+                <td>
+                    <img src="{{i.more_images.url}}" height="300" width="300">
+                </td>
+            {% endfor %}
+        {% else %}
+                <td><font color="rgb(4, 107, 26);">No Video has been uploaded..</font></td>
+        {% endif %}
+        </tr>
+        <tr>
+            <h2>
+                <center>
+                            <td><input type="button" name="back" value="Back" onclick="window.location='/adminmodule/allevent/'"></td>
+                            {% if eventstatus %}
+                            <form action="/adminmodule/makeasapproved/" method="post">{% csrf_token %}
+                                <input type="hidden" name="event_id" value="{{eobj.event_ID}}">
+                                <td><input type="submit" name="submit" value="Approve The Event">
+                            </form>
+                            <form action="/adminmodule/makeasrejected/" method="post">{% csrf_token %}
+                                <input type="hidden" name="event_id" value="{{eobj.event_ID}}">
+                            <input type="submit" name="submit" value="Reject The Event"></td>
+                            </form>
+                            {% endif %}
+                </center>
+            </h2>
+        </tr>
+    </table>
+    </center>
+    <br><br><br>
+    {% else %}
+        No such event is present.Something went wrong.
+    {% endif %}
+</body>
+</html>
+{% endblock %}

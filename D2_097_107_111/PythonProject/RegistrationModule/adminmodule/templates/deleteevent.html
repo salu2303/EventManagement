@@ -1,0 +1,73 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            #b1
+            {
+                display: none;
+            }
+            div.text
+		    {
+		        padding: 15px 0;
+		        width:75%;
+		        float:center;
+		        background-color:rgb(255,255,255,0.4);
+		        color:white;
+		        text-shadow: 1px 1px 5px black, 0 0 5px rgb(7, 10, 48), 0 0 5px darkblue;
+		        font-weight:bold;
+		        font-size:25px;
+		    }
+		    input.button2
+            {
+                font-size:15px;
+                border-color:lightgray;
+                padding: 10px 75px;
+                font-weight:800;
+                color:rgb(9, 9, 73);
+                border-radius: 10px;
+                font-family:Arial, Helvetica, sans-serif;
+                cursor:pointer;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded",function(event){
+                document.getElementById("b1").click();
+            });
+        </script>
+    </head>
+    <body>
+    {% if "admin" in request.session %}
+    <center>
+        <form action="/adminmodule/deleteevent/" method="post">{% csrf_token %}
+        <div class="text">Please give event-ID to delete that event</div>
+        <br>
+            <table>
+                <tr>
+                    <td colspan="2">
+                    <center>
+                    {% if x %}
+                        <H3>Event not found..Please write correct details..</H3>
+                    {% endif %}
+                    {% if y %}
+                        <H3>Sucessfully deleted event {{eventname}}</H3>
+                    {% endif %}
+                    </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Event ID:</td>
+                    <td><input type="text" name="eventid" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><center><input type="submit" class="button2" name="submit" value="Delete the event"></center></td>
+                </tr>
+            </table>
+
+        </form>
+    </center>
+    {% else %}
+        <input type="button" name="b1" id="b1" onclick="window.location='/adminmodule/adminlogin/'">
+    {% endif %}
+</body>
+{% endblock %}

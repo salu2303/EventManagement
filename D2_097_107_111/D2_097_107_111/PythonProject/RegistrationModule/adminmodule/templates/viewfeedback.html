@@ -1,0 +1,52 @@
+{% extends 'base1.html' %}
+{% block content %}
+<html>
+    <head>
+        <style>
+            table
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+		    tr,td
+            {
+                padding:10px 10px;
+                font-size:20px;
+		        font-weight:bold;
+		        color:rgb(9, 9, 73);
+		        font-family:Arial, Helvetica, sans-serif;
+            }
+            h2,h4,h1
+            {
+		        font-family:Arial, Helvetica, sans-serif;
+		        color:rgb(9, 9, 73);
+            }
+        </style>
+    </head>
+<body>
+<br><br>
+<center>
+    <table>
+        {% if not feedback %}
+        <tr>
+            <td><h2>There no feedback caught.</h2></td>
+        </tr>
+        {% else %}
+        <tr>
+            <th>Feedback sender</th>
+            <th>Feedback</th>
+            <th>Date & Time</th>
+        </tr>
+        {% for i in feedback %}
+        <tr>
+            <td>{{i.F_ID}}</td>
+            <td>{{i.feedback}}</td>
+            <td>{{i.date}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+</center>
+</body>
+{% endblock %}

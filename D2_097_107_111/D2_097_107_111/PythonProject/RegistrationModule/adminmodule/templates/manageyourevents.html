@@ -1,0 +1,32 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+        </style>
+    </head>
+    <body>
+        <center>
+        <div class="t1">
+            <table>
+                <tr>
+                    <td><center><h2>Manage Your Events</h2></center></td>
+                </tr>
+                <tr>
+                    <td>
+                        <center>
+                            <input type="button" class="button" name="addevent" value="Add Event" onclick="window.location='/adminmodule/addevent.html'">
+                            <input type="button" class="button" name="updateevent" value="Update Event" onclick="location='/adminmodule/updateevent.html'">
+                            <input type="button" class="button" name="deleteevent" value="Delete Event" onclick="location='/adminmodule/deleteevent.html'">
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td><center><input type="button" class="button" name="allevent" value="View Events" onclick="location='/adminmodule/allevent/'"></center></td>
+                </tr>
+            </table>
+        </div>
+        </center>
+    </body>
+</html>
+{% endblock %}

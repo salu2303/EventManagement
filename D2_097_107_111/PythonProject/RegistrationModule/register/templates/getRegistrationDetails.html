@@ -1,0 +1,112 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<html>
+<head>
+	<style>
+		body
+		{
+			background-image: url('/static/C_B_R.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		table
+	    {
+			font-size: 20px;
+			font-family:Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			color:rgb(0,0,60);
+			padding:40px;
+			background-color: rgb(143, 238, 190);
+		}
+		td
+		{
+		    padding:15px;
+		}
+		h2
+		{
+			font-size: 30px;
+			font-family:"Times New Roman", Times, serif;
+			font-weight: bold;
+			color:rgb(9, 9, 73);
+		}
+		input
+		{
+		    font-size: 18px;
+		}
+		input.submit
+		{
+		    border-radius: 15px;
+			font-size: 25px;
+			padding: 5px;
+			cursor:pointer;
+			border-color:rgb(0,0,60);
+			background-color:lightgray;
+			color:rgb(0,0,60);
+		}
+		input.submit:hover
+	    {
+		    background-color:rgb(0,0,60);
+		    color:white;
+		}
+		input.t1
+        {
+            outline: 0;
+            border-width: 0 0 2px;
+            border-color: rgb(0,0,60);
+            background-color: rgb(143, 238, 190);
+        }
+        [placeholder]:focus::-webkit-input-placeholder {
+            transition: text-indent 0.7s 0.7s ease;
+            text-indent: -100%;
+            opacity: 1;
+        }
+        input.t1:hover
+        {
+            background-color: rgb(180, 255, 217);
+        }
+	</style>
+</head>
+<body>
+	<center>
+		<H2>REGISTRATION PAGE</H2>
+		<form action="/register/verifyDetails/" method="post">{% csrf_token %}
+			<table height="300" width="500">
+
+            <tr>
+                <td><center>Name</center></td>
+				<td><input type="text" class="t1" placeholder="Enter your name" name="name" size="35" required ></td>
+            </tr>
+			<tr>
+				<td><center>Address</center></td>
+				<td><input type="text" class="t1" placeholder="Enter your address"name="address" size="35" required></td>
+			</tr>
+			<tr>
+				<td><center>Mobile no</center></td>
+				<td><input type="text" class="t1" placeholder="Enter your mobile no" name="mobile_no" size="35" required></td>
+			</tr>
+			<tr>
+				<td><center>E-mail ID</center></td>
+				<td><input type="email" class="t1" placeholder="Enter your email-id" name="email" size="35" required></td>
+            </tr>
+            <tr>
+				<td><center>Username</center></td>
+				<td><input type="text" class="t1" placeholder="Enter your username" name="username" size="35" maxlength="15" required></td>
+			</tr>
+			<tr>
+				<td><center>Password</center></td>
+				<td><input type="password" class="t1" placeholder="Enter your password" name="password" size="35" minlength="6" maxlength="15" required></td>
+			</tr>
+			<tr>
+				<td><center>Confirm Password</center></td>
+				<td><input type="password" class="t1" placeholder="Enter your password again" name="conpassword" size="35" minlength="6" maxlength="15" required></td>
+			</tr>
+			<tr>
+				<td colspan="3"><center><input type="submit" class="submit" name="submit" value="Register"></b></center></td>
+			</tr>
+		</form>
+	</center>
+</body>
+</html>
+{% endblock%}

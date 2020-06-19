@@ -1,0 +1,70 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+<body>
+<center>
+    <form action="/adminmodule/addmanager/" method="post">{% csrf_token %}
+    <center>
+        <font color="white" style="font-size:30px;">
+            <table>
+                <tr>
+                    <td colspan="2"><center><H2>Add your manager</H2></center></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {% if msg %}
+                            <center><font style="font-size: x-large;">{{msg}}</font></center>
+                        {% endif %}
+                        {% if res == "1" %}
+                            <br>{{res}}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Manager name :</td>
+                    <td><input type="text" name="mname" required></td>
+                </tr>
+                <tr>
+                    <td>Manager address:</td>
+                    <td><input type="text" name="maddress" required></td>
+                </tr>
+                <tr>
+                    <td>Manager mobileno:</td>
+                    <td><input type="text" name="mmobileno" required></td>
+                </tr>
+                <tr>
+                    <td>Manager email:</td>
+                    <td><input type="emial" name="memail" required></td>
+                </tr>
+                <tr>
+                    <td>Manager event_type:</td>
+                    <td><input type="text" name="meventtype" required></td>
+                </tr>
+                <!--<tr>
+                    <td>Manager uname:</td>
+                    <td><input type="text" name="muname" required></td>
+                </tr>
+                <tr>
+                    <td>Manager password:</td>
+                    <td><input type="password" name="pass" required></td>
+                </tr>
+                <tr>
+                    <td>Manager pass:</td>
+                    <td><input type="password" name="cpass" required></td>
+                </tr>-->
+                <tr>
+                    <td colspan="2"><center><input type="submit" class="button" name="submit" value="Submit" style="font-size:x-large"></center></td>
+                </tr>
+            </table>
+        </font>
+    </center>
+    </form>
+</center>
+</body>
+</html>
+{% endblock %}

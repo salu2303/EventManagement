@@ -1,0 +1,209 @@
+{% extends 'base1.html'%}
+{% block content %}
+{% csrf_token %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+              document.getElementById("b1").click();
+           });
+           function fn(ev,object)
+            {
+                var d1=object.value;
+                d1= new Date(d1);
+                d2=new Date();
+                if(d1<d2)
+                {
+                    window.alert(d1.getDate()+"-"+(d1.getMonth()+1)+"-"+d1.getFullYear()+" date is before the current date.Choose the furture date to be added for your");
+                    document.getElementById("date").value="0000-00-00";
+                }
+            }
+          </script>
+        <style>
+            html, body
+            {
+                height: 100%;
+            }
+            h2,h4,h1
+            {
+		        font-family:Arial, Helvetica, sans-serif;
+		        color:rgb(9, 9, 73);
+            }
+            tr,td
+            {
+                padding:10px 10px;
+                font-size:20px;
+		        font-weight:bold;
+		        color:rgb(9, 9, 73);
+		        font-family:Arial, Helvetica, sans-serif;
+            }
+            input.button
+            {
+                font-size:15px;
+                border-color:lightgray;
+                padding: 10px 50px;
+                font-weight:800;
+                color:rgb(9, 9, 73);
+                border-radius: 10px;
+                font-family:Arial, Helvetica, sans-serif;
+                cursor:pointer;
+            }
+            input.button:hover
+            {
+                background-color:rgb(9, 9, 73);
+                color:white;
+            }
+            body
+            {
+                background-image: url("/static/A_B_L.jpg");
+                background-size:100% 100%;
+                background-position:cover;
+                background-attachment:fixed;
+                backdrop-filter: blur(7px);
+
+            }
+            table
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+		    div.t
+		    {
+		        padding: 70px 0;
+		        float:center;
+		        object-fit: cover;
+		    }
+		    div.ad
+		    {
+		        padding: 45px 0;
+		        float:center;
+		        background-color:rgb(255,255,255,0.4);
+		        color:white;
+		        text-shadow: 1px 1px 5px black, 0 0 5px rgb(7, 10, 48), 0 0 5px darkblue;
+		        font-weight:bold;
+		        font-size:45px;
+		    }
+		    input
+		    {
+		        font-size:20px;
+		    }
+		    input.t1
+            {
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(255, 255, 255);
+            }
+            ::-webkit-input-placeholder
+            {
+                color:rgb(9, 9, 73);
+                border-bottom-color:rgb(9, 9, 73);
+            }
+            [placeholder]:focus::-webkit-input-placeholder {
+                transition: text-indent 0.5s 0.5s ease;
+                text-indent: -100%;
+                color:white;
+                opacity: 1;
+            }
+            img
+            {
+                border: 5px solid #ddd;
+                border-radius: 100%;
+                padding: 5px;
+                width: 100px;
+                height: 90px;
+            }
+            img:hover
+            {
+                box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+            }
+            a
+            {
+                color:rgb(9, 9, 73);
+            }
+            a:hover
+            {
+                color:rgb(9, 89, 238);
+            }
+            input.b2
+            {
+                font-size:20px;
+                border-color:lightgray;
+                padding: 10px 110px;
+                font-weight:800;
+                color:rgb(9, 9, 73);
+                border-radius: 10px;
+                font-family:Arial, Helvetica, sans-serif;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        {% if "admin" in request.session %}
+        <form action="/adminmodule/addevent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <center>
+            <div class="t">
+                <table>
+                    <tr>
+                        <td colspan="2"><h1><center>Add your event</center></h1></td>
+                    </tr>
+                    <tr>
+                        <td>Event name</td>
+                        <td>: <input type="text" name="eventname" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event type</td>
+                        <td>: <input type="text" name="eventtype" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event duration </td>
+                        <td>: <input type="text" name="eventduration" required><br></td>
+                    </tr>
+                    <tr>
+                        <td>Event time </td>
+                        <td>: <input type="time" name="eventtime" min="01:00" max="12:00" required> (In 12 hour format)</td>
+                    </tr>
+                    <tr>
+                        <td>Event date </td>
+                        <td>: <input type="date" name="eventdate" id="date" onchange="fn('change',this);" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event venue </td>
+                        <td>: <input type="text" name="eventvenue" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event description</td>
+                        <td>: <input type="text" name="eventdescription" required></td>
+                    </tr>
+                    <tr>
+                        <td>Contatct no.</td>
+                        <td>: <input type="text" name="contactno" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event Image</td>
+                        <td>: <input type="file" name="event_image" accept="image/png , image/jpeg" required></td>
+                    </tr>
+                    <tr>
+                        <td>More Images</td>
+                        <td>: <input type="file" name="images" multiple></td>
+                    </tr>
+                    <tr>
+                        <td>More Videos</td>
+                        <td>: <input type="file" name="videos" multiple></td>
+                    </tr>
+                <!--<input type="button" name="submit" value="Submit" onclick="location='/adminmodule/addevent/'">-->
+                    <tr>
+                        <td colspan="2"><center><input type="submit" class="b2" name="submit" value="Add Event"></center></td>
+                    </tr>
+                </table>
+            </div>
+            </center>
+        </form>
+        {% else %}
+            <input type="button" name="b1" id="b1" onclick="window.location='/adminmodule/adminlogin/'">
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

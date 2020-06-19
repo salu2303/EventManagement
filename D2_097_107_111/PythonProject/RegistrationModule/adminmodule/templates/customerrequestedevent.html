@@ -1,0 +1,119 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            table
+            {
+                font-size: 20px;
+            }
+            input.b
+            {
+                font-size: 15px;
+                padding: 5px 5px;
+                font-weight:800;
+                color:indigo;
+                border-radius: 50px;
+                border: 1px solid indigo;
+                cursor:pointer;
+            }
+            input.b:hover {
+                background-color:rgb(146, 27, 231);
+                color: white;
+            }
+            div.div
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        width:75%;
+		        background-color:rgb(255,255,255,0.5);
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+        </style>
+    </head>
+<body>
+<center>
+<div class="div">
+<p>
+    <h2>All Events Types:
+    <select  name="sort" style="width: 250px; height: 50px; font-size:20px;" onchange="document.location.href=this.value">
+        <option>--Select type--</option>
+        <option value="/adminmodule/approvedevent/">Approved Events</option>
+        <option value="/adminmodule/unapprovedevent/">Unapproved Events</option>
+        <option value="/adminmodule/rejectedevent/">Rejected Events</option>
+
+        <option value="/adminmodule/customerrequestedevent/">Customer Requested Events</option>
+        <option value="/adminmodule/allevent/">All Events</option>
+    </select>
+    </h2>
+</p>
+{% if not ceobj %}
+    <center><h4>No request is made to you uptil now.</h4></center>
+{% else %}
+    {% for each in ceobj %}
+        <table border="2">
+        <tr>
+            <td>
+            <table>
+                <tr>
+                    <td>Customer username</td>
+                    <td>{{each.c_username_id}}</td>
+                </tr>
+                <tr>
+                    <td>Event Type</td>
+                    <td>{{each.event_type}}</td>
+                </tr>
+                <tr>
+                    <td>Event Venue</td>
+                    <td>{{each.event_venue}}</td>
+                </tr>
+                <tr>
+                    <td>Event Cost</td>
+                    <td>{{each.event_cost}}</td>
+                </tr>
+                <tr>
+                    <td>Event Time</td>
+                    <td>{{each.event_time}}</td>
+                </tr>
+                <tr>
+                    <td>Event Date</td>
+                    <td>{{each.event_date}}</td>
+                </tr>
+                <tr>
+                    <td>Event Status</td>
+                    <td>{{each.event_status}}</td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <form action="/adminmodule/adminacceptevent/" method="post">{% csrf_token %}
+                <input type="hidden" name="id1" value="{{each.c_username_id}}">
+                <input type="hidden" name="id2" value="{{each.event_type}}">
+                <input type="hidden" name="id3" value="{{each.event_venue}}">
+                <td colspan="2"><input type="submit" class="b" name="accept" value="Accept the request">
+            </form>
+            <form action="/adminmodule/admindonotacceptevent/" method="post">{% csrf_token %}
+                <input type="hidden" name="id1" value="{{each.c_username_id}}">
+                <input type="hidden" name="id2" value="{{each.event_type}}">
+                <input type="hidden" name="id3" value="{{each.event_venue}}">
+                <input type="submit" class="b" name="notaccept" value="Reject the request"></td>
+            </form>
+        </tr>
+    </table>
+    {% endfor %}
+    </div>
+    </center>
+</body>
+</html>
+{% endif %}
+{% endblock %}

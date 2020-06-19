@@ -1,0 +1,189 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                document.getElementById("b1").click();
+            });
+        </script>
+        <style>
+            #b1
+            {
+                display:none;
+            }
+            body{
+                font-size: x-large;
+            }
+            h6{
+                font-size:25px;
+            }
+            div.text
+		    {
+		        padding: 15px 0;
+		        width:75%;
+		        float:center;
+		        background-color:rgb(255,255,255,0.4);
+		        color:white;
+		        text-shadow: 1px 1px 5px black, 0 0 5px rgb(7, 10, 48), 0 0 5px darkblue;
+		        font-weight:bold;
+		        font-size:25px;
+		    }
+		    Error
+		    {
+		        text-shadow: 1px 1px 2px #8B0000, 2px 1px 1px red, 1px 1px 1px yellow;
+		        background-color:rgb(255, 255, 255);
+		        font-size:35px;
+		    }
+        </style>
+    </head>
+    <body>
+    {% if not x %}
+    {% if "admin" in request.session %}
+    <center>
+        <font color="white">
+            <form action="/adminmodule/getpreviousevent/" method="post">{% csrf_token %}
+            <div class="text">
+                Please fill the event details that you want to update.
+                {% if notexist %}
+                     <font color="#f36633"><Error>{{notexist}}Event does not exist.!!!!!</Error></font>
+                {% endif %}
+            </div>
+                <h6>
+                <table>
+                    <tr>
+                        <td>Event name </td>
+                        <td><input type="text" name="eventname" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event type</td>
+                        <td><input type="text" name="eventtype" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event date</td>
+                        <td><input type="date" name="eventdate" required></td>
+                    </tr>
+                    <tr>
+                        <td>Event venue</td>
+                        <td><input type="text" name="eventvenue" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" class="button" name="submit" value="Update the event"></td>
+                    </tr>
+                    <tr>
+                    {% if x == 0 %}
+                        <td colspan="2"><H3>Event not found..Please write correct details..</H3></td>
+                    {% endif %}
+                </table>
+            </h6>
+            </form>
+        </font>
+    </center>
+    {% else %}
+            <input type="button" name="b1" id="b1" onclick="window.location='/adminmodule/adminlogin/'">
+    {% endif %}
+    {% endif %}
+
+    {% if x %}
+    <br>
+    <center>
+    <font color="white"><h1>Update Your Event</h1>
+        <form action="/adminmodule/updateevent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <table border="8" style="border-color:rgb(199, 160, 218);">
+                <tr>
+                    <td bgcolor="#FFB6C1" style="color:rgb(100, 0, 95);" rowspan="8">
+                        <center>
+                            Event Image<br><img src="{{media_url}}{{eventobj.event_image}}" height="300" width="300"></td>
+                        </center>
+                    <td bgcolor="#FFB6C1" style="color:rgb(100, 0, 95);font-weight:bold;" rowspan="8">
+                        <center>
+                        <table>
+                        <tr>
+                            <td>Event name</td>
+                            <td><input type="text" name="eventname" value="{{eventobj.event_name}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Event type</td>
+                            <td><input type="text" name="eventtype" value="{{eventobj.event_type}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Event duration</td>
+                            <td><input type="text" name="eventduration" value="{{eventobj.event_duration}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Event time</td>
+                            <td><input type="time" name="eventtime" min="01:00" max="12:00"  value="{{eventobj.event_time}}" step="1" required></td>
+                        </tr>
+                        <tr>
+                            <td>Event date</td>
+                            <td><input type="date" name="eventdate"  value="{{eventobj.event_date}}" required></td>
+                        </tr>
+                        <tr>
+                            <td>Event venue</td>
+                            <td><input type="text" name="eventvenue"  value="{{eventobj.event_venue}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Event description</td>
+                            <td><input type="text" name="eventdescription"  value="{{eventobj.event_description}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Contatct no.</td>
+                            <td><input type="text" name="contactno" value="{{eventobj.event_contact_no}}"></td>
+                        </tr>
+                        </table>
+                        </center>
+                    </td>
+                </tr>
+                <input type="hidden" name="eventobj" value="{{eventobj.event_ID}}">
+
+                <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+                <tr>
+                <!--Changing the extra images -->
+                    <td bgcolor="#FFB6C1" style="color:rgb(100, 0, 95);font-weight:bold;" rowspan="5">
+                        <table border="2" style="border-color:rgb(199, 160, 218);">
+                            <tr>
+                                <td>Event Images:</td>
+                                {% for i in iobj %}
+                                    <td><img src="{{media_url}}{{i.more_images}}" height="300" width="300"></td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Add Images: </td>
+                                <td><input type="file" name="images" accept="image/png , image/jpeg" multiple></td>
+                            </tr>
+                        </table>
+                    </td>
+
+                <!--Changing the extra videos -->
+                    <td bgcolor="#FFB6C1" style="color:rgb(100, 0, 95);font-weight:bold;" rowspan="5">
+                        <table border="2" style="border-color:rgb(199, 160, 218);">
+                            <tr>
+                                <td>Event Videos:</td>
+                                {% for v in vobj %}
+                                    <td>
+                                        <video height="300" width="300" controls>
+                                            <source src="{{v.more_videos.url}}" type="video/mp4">
+                                        </video>
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Add videos: </td>
+                                <td><input type="file" name="videos" multiple></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+
+                <tr>
+                    <td bgcolor="#FFB6C1" style="color:rgb(100, 0, 95);font-weight:bold;" colspan="2"><center><input type="submit" class="ub" name="submit" value="Update"></center></td>
+                </tr>
+            </table>
+        </form>
+    </font>
+    </center>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

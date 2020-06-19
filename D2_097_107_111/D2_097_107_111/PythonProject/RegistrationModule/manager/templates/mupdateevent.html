@@ -1,0 +1,119 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                document.getElementById("b1").click();
+            });
+        </script>
+        <style>
+            #b1
+            {
+                display:none;
+            }
+            h1
+            {
+                color:rgb(9, 9, 73);
+            }
+            h6{
+                font-size:25px;
+            }
+            #b1
+            {
+                display:none;
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:95%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            h4.h
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:70%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            td
+            {
+                padding:7px 10px;
+            }
+            td.t2
+            {
+                padding:15px 50px;
+            }
+            input.text
+            {
+                font-size: 20px;
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(9, 9, 73);
+                border-width:3px;
+            }
+            input.b1
+            {
+                padding:15px 20px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+<body>
+    {% if "manager" in request.session %}{% csrf_token %}
+        {% if msg %}
+            <center><table><tr><center><td><H1>Event not found..Please write correct details..</H1></td></center></tr></table></center>
+            {{msg}}
+        {% endif %}
+        <center>
+            <h4 class="h">
+            <form action="/manager/mgetpreviousevent/" method="post">{% csrf_token %}
+                <table>
+                    <tr>
+                        <td colspan="2"><center><H3>Please fill the event details that you want to update</center></H3></td>
+                    </tr>
+                    <tr>
+                        <td>Event name:</td>
+                        <td><input type="text" name="eventname"></td>
+                    </tr>
+                    <tr>
+                        <td>Event date:</td>
+                        <td><input type="date" name="eventdate"></td>
+                    </tr>
+                    <tr>
+                        <td>Event venue:</td>
+                        <td><input type="text" name="eventvenue"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><center><input type="submit" class="b1" name="updateevent" value="Update the event"></center></td>
+                    </tr>
+                </table>
+            </form>
+            </h4>
+        </center>
+    {% else %}
+        <input type="button" name="b1" id="b1" onclick="window.location='/manager/managerlogin/'">
+    {% endif %}
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base3.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            input.s1
+            {
+                font-size:15px;
+                padding: 10px 20px;
+                font-weight:800;
+                color:indigo;
+                border-radius: 50px;
+            }
+        </style>
+    </head>
+<body>
+    <form action="/customer/makerequest/" method="post">{% csrf_token %}
+        <center>
+        <table>
+        <tr>
+            <td>Event Type:</td>
+            <td>
+                <select name="eventtype">
+                    <option name="BirthofaNewChild">Birth of a New Child</option>
+                    <option name="Wedding">Wedding</option>
+                    <option name="Birthday">Birthday</option>
+                    <option name="modern">modern</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Event Vanue:</td>
+            <td><input type="text" name="eventvenue"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" name="search" value="Search"></td>
+        </tr>
+        <tr>
+            <td>Event Date:</td>
+            <td><input type="date" name="eventdate"></td>
+        </tr>
+        <tr>
+            <td>Event Time:</td>
+            <td><input type="time" name="eventtime" step="1"></td>
+        </tr>
+        <tr>
+            <td>Event Duration:</td>
+            <td><input type="text" name="eventdes"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" class="s1" name="submit" value="Make Request"></td>
+        </tr>
+        </table>
+    </form>
+    {% if request_made %}
+        <br><br>Your request is sent.<br><br>
+        If your request is accepted then you will be informed.
+    {% endif %}
+</body>
+{% endblock %}

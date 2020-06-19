@@ -1,0 +1,132 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+              document.getElementById("b1").click();
+           });
+           function fn(ev,object)
+            {
+                var d1=object.value;
+                d1= new Date(d1);
+                d2=new Date();
+                if(d1<d2)
+                {
+                    window.alert(d1.getDate()+"-"+(d1.getMonth()+1)+"-"+d1.getFullYear()+" date is before the current date.Choose the furture date.");
+                    document.getElementById("date").value="0000-00-00";
+                }
+            }
+          </script>
+        <style>
+            h6{
+                font-size:25px;
+            }
+            #b1
+            {
+                display:none;
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:60%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            td
+            {
+                padding:7px 20px;
+            }
+            input.text
+            {
+                font-size: 20px;
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(9, 9, 73);
+                border-width:3px;
+            }
+            input.b1
+            {
+                padding:15px 20px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        {% if "manager" in request.session %}
+        <h4>
+        <form action="/manager/createevent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <table>
+                <tr>
+                    <td colspan="2"><center><h2>Create Your Event</h2></center></td>
+                </tr>
+                <tr>
+                    <td>Event name:</td>
+                    <td><input type="text" class="text" name="eventname" required></td>
+                </tr>
+                <tr>
+                    <td>Event duration:</td>
+                    <td><input type="text" class="text" name="eventduration" required></td>
+                </tr>
+                <tr>
+                    <td>Event time:</td>
+                    <td><input type="time" class="text" name="eventtime" min="01:00" max="24:00" step="1" required></td>
+                </tr>
+                <tr>
+                    <td>Event date:</td>
+                    <td><input type="date" class="text" name="eventdate" onchange="fn('change',this);"required></td>
+                </tr>
+                <tr>
+                    <td>Event venue:</td>
+                    <td><input type="text" class="text" name="eventvenue" required></td>
+                </tr>
+                <tr>
+                    <td>Event description:</td>
+                    <td><input type="text" class="text" name="eventdescription" required></td>
+                </tr>
+                <tr>
+                    <td> Contatct no :</td>
+                    <td><input type="text" class="text" name="contactno" required></td>
+                </tr>
+                <tr>
+                    <td>Event Image:</td>
+                    <td><input type="file" class="text" name="event_image" accept="image/png , image/jpeg" required></td>
+                </tr>
+                <tr>
+                    <td>More Images :</td>
+                    <td><input type="file" class="text" name="images" multiple></td>
+                </tr>
+                <tr>
+                    <td>More Videos :</td>
+                    <td><input type="file" class="text" name="videos" multiple></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><center><input type="submit" class="b1" name="submit" value="submit"></center></td>
+                </tr>
+            </table>
+        </form>
+        </h4>
+        </center>
+        {% else %}
+            <input type="button" name="b1" id="b1" onclick="window.location='/manager/managerlogin/'">
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

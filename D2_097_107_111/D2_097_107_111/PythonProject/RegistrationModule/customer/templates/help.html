@@ -1,0 +1,74 @@
+{% extends 'base3.html' %}
+{% block content %}
+<html>
+    <head>
+        <style>
+            table
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+		    tr,td
+            {
+                padding:10px 10px;
+                font-size:20px;
+		        font-weight:bold;
+		        color:rgb(9, 9, 73);
+		        font-family:Arial, Helvetica, sans-serif;
+            }
+            h2,h4,h1
+            {
+		        font-family:Arial, Helvetica, sans-serif;
+		        color:rgb(9, 9, 73);
+            }
+        </style>
+    </head>
+<body>
+<br><br>
+<center>
+    <table>
+        {% if not feedback %}
+        <tr><td>
+            <center>
+                There no feedback caught.
+                <h4>
+                    <form action="/customer/cgivefeedback/" method="post">{% csrf_token %}
+                        <table>
+                            <tr>
+                                <td colspan="2"><center><h2>Give Feedback</h2></center></td>
+                            </tr>
+                            <tr>
+                                <td>Feedback</td>
+                                <td><textarea rows="4" cols="35" name="feedback" class="t1" placeholder="Enter your feedback here" required></textarea></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><center><input type="submit" class="b1" name="submit" value="Send The Feedback"></center></td>
+                            </tr>
+                        </table>
+                    </form>
+                    {% if msg %}
+                        {{msg}}
+                    {% endif %}
+                </h4>
+            </center>
+        </td></tr>
+        {% else %}
+        <tr>
+            <th>Feedback sender</th>
+            <th>Feedback</th>
+            <th>Date & Time</th>
+        </tr>
+        {% for i in feedback %}
+        <tr>
+            <td>{{i.F_ID}}</td>
+            <td>{{i.feedback}}</td>
+            <td>{{i.date}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+</center>
+<br><br>
+</body>
+{% endblock %}

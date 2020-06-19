@@ -1,0 +1,31 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <center>
+            <table>
+                <tr>
+                    <td><center><h2>Manage Your Managers</h2></center></td>
+                </tr>
+                <tr>
+                    <td>
+                        <center>
+                            <input type="button" class="button" name="addmanager" value="Add Manager" onclick="location='/adminmodule/addmanager.html'">
+                            <input type="button" class="button" name="deletemanager" value="Delete Manager" onclick="location='/adminmodule/deletemanager.html'">
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td><center><input type="button" class="button" name="viewmanager" value="View Manager" onclick="location='/adminmodule/viewmanager/'"></center></td>
+                </tr>
+            </table>
+        </center>
+        </div>
+    </body>
+</html>
+{% endblock %}

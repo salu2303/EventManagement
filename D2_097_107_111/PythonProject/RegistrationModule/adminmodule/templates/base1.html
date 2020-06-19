@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Admin Page</title>
+        <style>
+            html, body
+            {
+                height: 100%;
+            }
+            h2,h4
+            {
+		        font-family:Arial, Helvetica, sans-serif;
+		        color:rgb(9, 9, 73);
+            }
+            tr,td
+            {
+                padding:10px 10px;
+                font-size:20px;
+		        font-weight:bold;
+		        color:rgb(9, 9, 73);
+		        font-family:Arial, Helvetica, sans-serif;
+            }
+            input.button
+            {
+                font-size:15px;
+                border-color:lightgray;
+                padding: 10px 50px;
+                font-weight:800;
+                color:rgb(9, 9, 73);
+                border-radius: 10px;
+                font-family:Arial, Helvetica, sans-serif;
+                cursor:pointer;
+            }
+            input.button:hover
+            {
+                background-color:rgb(9, 9, 73);
+                color:white;
+            }
+            body
+            {
+                background-image: url("/static/A_B_L.jpg");
+                background-size:100% 100%;
+                background-position:cover;
+                background-attachment:fixed;
+                backdrop-filter: blur(7px);
+
+            }
+            table
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+		    div.t
+		    {
+		        padding: 70px 0;
+		        float:center;
+		        object-fit: cover;
+		    }
+		    div.ad
+		    {
+		        padding: 45px 0;
+		        float:center;
+		        background-color:rgb(255,255,255,0.4);
+		        border-radius:5%;
+		        color:white;
+		        text-shadow: 1px 1px 5px black, 0 0 5px rgb(7, 10, 48), 0 0 5px darkblue;
+		        font-weight:bold;
+		        font-size:45px;
+		    }
+		    input
+		    {
+		        font-size:20px;
+		    }
+		    input.t1
+            {
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(255, 255, 255);
+            }
+            ::-webkit-input-placeholder
+            {
+                color:rgb(9, 9, 73);
+                border-bottom-color:rgb(9, 9, 73);
+            }
+            [placeholder]:focus::-webkit-input-placeholder {
+                transition: text-indent 0.5s 0.5s ease;
+                text-indent: -100%;
+                color:white;
+                opacity: 1;
+            }
+            img
+            {
+                border: 5px solid #ddd;
+                padding: 5px;
+                width: 200px;
+                height: 200px;
+            }
+            img:hover
+            {
+                box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+            }
+            a
+            {
+                color:rgb(9, 9, 73);
+            }
+            a:hover
+            {
+                color:rgb(9, 89, 238);
+            }
+        </style>
+    </head>
+    <body bgcolor="#b19cd9">
+        <center><div class="ad" >Welcome To Admin Page</div></center>
+            <div class="t">
+            <center>
+            <input type="button" class="button" name="manageyourevents" value="Manage Your Events" onclick="window.location='/adminmodule/manageyourevents.html'">
+            <input type="button" class="button" name="manageyourmanager" value="Manage Your Manager" onclick="window.location='/adminmodule/manageyourmanager.html'">
+            <input type="button" class="button" name="feedback" value="Feedback" onclick="location='/adminmodule/viewfeedback/'">
+            <input type="button" class="button" name="home" class="button" value="Admin Home Page" onclick="window.location='/adminmodule/adminhome/'">
+            <input type="button" class="button" name="logout" class="button" value="Logout" onclick="window.location='/adminmodule/alogout/'">
+            </center>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

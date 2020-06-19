@@ -1,0 +1,104 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            input.b1
+            {
+                padding:15px 35px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:600px;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            input.text
+            {
+                font-size: 20px;
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(9, 9, 73);
+                border-width:3px;
+            }
+            td
+            {
+                padding:7px 15px;
+            }
+        </style>
+    </head>
+<body>
+<center>
+<h4>
+    <form action="/manager/viewprofile/" method="post">{% csrf_token %}
+        <table>
+            <tr>
+                <td colspan="2"><center><h2>View Profile</h2></center></td>
+            </tr>
+            <tr>
+                <td>Manager Name</td>
+                <td>{{mobj.m_name}}</td>
+            </tr>
+            <tr>
+                <td>Manager Username</td>
+                <td>{{mobj.m_username}}</td>
+            </tr>
+            <tr>
+                <td>Manager Address</td>
+                <td>{{mobj.m_address}}</td>
+            </tr>
+            <tr>
+                <td>Manager Mobile no</td>
+                <td>{{mobj.m_mobileno}}</td>
+            </tr>
+            <tr>
+                <td>Manager Email-ID</td>
+                <td>{{mobj.m_email}}</td>
+            </tr>
+            <tr>
+                <td>Manager Event type</td>
+                <td>{{mobj.m_event_type}}</td>
+            </tr>
+            <tr>
+                <td>Manager Password</td>
+                <td>{{mobj.m_password}}</td>
+            </tr>
+            <tr>
+                <td>Manager Confirm-Password</td>
+                <td>{{mobj.m_password}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><center><input type="button" class="b1" name="edit" value="Edit Profile" onclick="window.location='/manager/editprofile/'"> <input type="button" class="b1" name="ok" value="Ok" onclick="window.location='/manager/viewprofile/'"></center></td>
+            </tr>
+            {% if msg %}
+            <tr>
+                <td colspan="2">
+                    <center>{{msg}}</center>
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+    </form>
+</h4>
+</center>
+</body>
+</html>
+{% endblock%}

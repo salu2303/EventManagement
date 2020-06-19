@@ -1,0 +1,46 @@
+{% extends 'base3.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            table
+            {
+                border-color: antiquewhite;
+            }
+        </style>
+    </head>
+    <body>
+        <br><br>
+        <center>
+            <table border="2">
+                <tr>
+                    <td>Customer Username</td>
+                    <td>{{cusobj.c_username}}</td>
+                </tr>
+                <tr>
+                    <td>Customer Name</td>
+                    <td>{{cusobj.c_name}}</td>
+                </tr>
+                <tr>
+                    <td>Customer Address</td>
+                    <td>{{cusobj.c_address}}</td>
+                </tr>
+                <tr>
+                    <td>Customer Email-ID</td>
+                    <td>{{cusobj.c_email}}</td>
+                </tr>
+                <tr>
+                    <td>Customer Password</td>
+                    <td>{{cusobj.c_password}}</td>
+                </tr>
+                <tr>
+                    <td>Customer Mobile-no</td>
+                    <td>{{cusobj.c_mobileno}}</td>
+                </tr>
+            </table>
+            <input type="button" name="edit" class="button" value="Edit Profile" onclick="window.location='/customer/cviewprofile/'">
+        </center>
+    </div>
+    </body>
+</html>
+{% endblock %}

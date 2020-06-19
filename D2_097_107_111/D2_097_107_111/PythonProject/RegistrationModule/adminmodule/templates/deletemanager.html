@@ -1,0 +1,36 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+        </style>
+    </head>
+<body>
+    <center>
+        {% if msg %}
+        <table>
+            <tr>
+                <td>
+                    <font style="font-size: x-large;">{{msg}}</font>
+                </td>
+            </tr>
+        </table>
+        {% endif %}
+        <br>
+        <form action="/adminmodule/deletemanager/" method="post">{% csrf_token %}
+        <table>
+            <tr>
+                <td colspan="2"><H2>Delete your manager</H2></td>
+            </tr>
+            <tr>
+                <td>Manager username</td><td><input type="text" name="musername" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="submit" class="button" value="Submit"></td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>
+{% endblock %}

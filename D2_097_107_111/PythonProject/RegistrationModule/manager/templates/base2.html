@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Manager Page</title>
+<!--background-image: linear-gradient(-90deg, rgb(0, 6, 61), rgb(130, 142, 253), white ,rgb(130, 142, 253) , rgb(0, 6, 61) );
+    background-color:#e0205a;
+        color:white;
+        padding: 15px 35px;
+        font-weight:800;
+    -->
+<style>
+    input.button
+    {
+        padding:15px 35px;
+        font-weight:800;
+        font-size:20px;
+        border:none;
+        background-color:rgb(130, 253, 136);
+        color:rgb(9, 9, 73);
+        border-radius: 20px;
+        font-family:Arial, Helvetica, sans-serif;
+        cursor:pointer;
+        box-shadow:0 7px 15px lightgray;
+    }
+    input.button:hover
+    {
+        background-color:rgb(9, 9, 73);
+        color:white;
+        box-shadow: 0 5px 15px gray;
+        font-weight:bold;
+    }
+    input.button:active
+    {
+        transform: translateY(4px);
+    }
+    div.m1
+    {
+	    padding: 45px 0;
+		float:center;
+		background-color:rgb(255,255,255,0.3);
+		color:white;
+		text-shadow: 1px 1px 5px black, 0 0 5px rgb(7, 10, 48), 0 0 5px darkblue;
+		font-weight:bold;
+		font-size:55px;
+    }
+    table.m2
+    {
+	    padding: 70px 0;
+		float:center;
+		object-fit: cover;
+		border-radius:35px;
+		background-color:rgb(255,255,255,0.3);
+		width:85%;
+		border:2px solid lightgray;
+		height:100%;
+    }
+    html,body
+    {
+        height:100%;
+        width:100%;
+    }
+    body
+    {
+        background-image: url("/static/M_B_H.jpg");
+        background-size:100% 100%;
+        background-position:cover;
+        background-attachment:fixed;
+        backdrop-filter: blur(0);
+    }
+</style>
+</head>
+<body>
+    <div class="m1"><center>Welcome to Home</center></div><br>
+    <center>
+        <table class="m2">
+            <tr><td>
+                <center>
+                <input type="button" name="home" class="button" value="Manager Home Page" onclick="window.location='/manager/managerhome.html'">
+                <input type="button" name="manageevent" class="button" value="Manage Event" onclick="window.location='/manager/manageevent.html'">
+                <input type="button" name="givefeedback" class="button" value="Give Feedback To Admin" onclick="window.location='/manager/givefeedback.html'">
+                <input type="button" name="viewprofile" class="button" value="View Profile" onclick="window.location='/manager/viewprofile/'">
+                <input type="button" name="logout" class="button" value="Logout" onclick="window.location='/manager/mlogout/'">
+                </center>
+            </td></tr>
+            <tr><td>
+    </center>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

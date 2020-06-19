@@ -1,0 +1,104 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            input.b1
+            {
+                padding:15px 35px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+            td
+            {
+                border:none;
+                padding:5px 10px;
+                font-size: 20px;
+                text-align: center;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            h2
+            {
+                color:rgb(9, 9, 73);
+                font-size:50px;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            div.div
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        width:75%;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            table
+            {
+                padding : 35px 55px;
+            }
+        </style>
+    </head>
+<body>
+<center>
+<h4>
+{% if not ceobj %}
+    No request is made to you uptil now.
+{% else %}
+    {% for each in ceobj %}
+        <table border="2">
+            <tr>
+                <td>Event Venue : </td>
+                <td>{{each.event_venue}}</td>
+            </tr>
+            <tr>
+                <td>Event Cost : </td>
+                <td>{{each.event_cost}}</td>
+            </tr>
+            <tr>
+                <td>Event Time : </td>
+                <td>{{each.event_time}}</td>
+            </tr>
+            <tr>
+                <td>Event Date : </td>
+                <td>{{each.event_date}}</td>
+            </tr>
+            <tr>
+                <form action="/manager/acceptevent/" id="form1" method="post">{% csrf_token %}
+                    <input type="hidden" name="id1" value="{{each.c_username_id}}">
+                    <input type="hidden" name="id2" value="{{each.event_type}}">
+                    <input type="hidden" name="id3" value="{{each.event_venue}}">
+                    <td><input type="submit" class="b1" id="accept" onsubmit="myfunction()" name="accept" value="Accept the request"></td>
+                </form>
+                <form action="/manager/donotacceptevent/" id="form2" method="post">{% csrf_token %}
+                    <input type="hidden" name="id1" value="{{each.c_username_id}}">
+                    <input type="hidden" name="id2" value="{{each.event_type}}">
+                    <input type="hidden" name="id3" value="{{each.event_venue}}">
+                    <td><input type="submit" class="b1" id="notaccept" onsubmit="myfunction()" name="notaccept" value="Reject the request"></td>
+                </form>
+            </tr>
+        </table>
+    {% endfor %}
+{% endif %}
+</h4>
+</center>
+{% endblock %}
+</body>
+</html>

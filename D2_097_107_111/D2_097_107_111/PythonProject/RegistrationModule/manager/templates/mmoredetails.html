@@ -1,0 +1,113 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+<head>
+    <style>
+         td
+            {
+                border:none;
+                padding:5px 10px;
+                text-align: center;
+                font-size: 20px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            h2
+            {
+                color:rgb(9, 9, 73);
+                font-size:50px;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            div.div
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        width:75%;
+		        background-color:rgb(255,255,255,0.5);
+		    }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+    </style>
+</head>
+<body>
+    <center>
+        <br>
+        <h4>
+        <table border="5" height="100%" width="70%" >
+        <tr>
+            <th colspan="2"><font size="7" face="verdana"><b>{{eventobj.event_name}}</b></font></th>
+        </tr>
+        <tr>
+            <td><img src="{{media_url}}{{eventobj.event_image}}" height="300" width="300"></td>
+            <td>
+            <table class="T" >
+                <tr>
+                    <td>Event Type :</td>
+                    <td>{{eventobj.event_type}}</td>
+                </tr>
+                <tr>
+                    <td>Event Date :</td>
+                    <td>{{eventobj.event_date}}</td>
+                </tr>
+                <tr>
+                    <td>Event Duration :</td>
+                    <td>{{eventobj.event_duration}}</td>
+                </tr>
+                <tr>
+                    <td>Event Time :</td>
+                    <td>{{eventobj.event_time}}</td>
+                </tr>
+                <tr>
+                    <td>Event Venue :</td>
+                    <td>{{eventobj.event_venue}}</td>
+                </tr>
+                <tr>
+                    <td>Event Description :</td>
+                    <td>{{eventobj.event_description}}</td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            {%if vobj %}
+                {% for v in vobj %}
+                    <td>
+                        <font color="rgb(4, 107, 26);">Videos...</font>
+                        <video height="300" width="300" controls>
+                            <source src="{{v.more_videos.url}}" type="video/mp4">
+                        </video>
+                    </td>
+                {% endfor %}
+            {% else %}
+                <td><font color="rgb(4, 107, 26);">No Video has been uploaded..</font></td>
+            {% endif %}
+        </tr>
+        <tr>
+            {%if iobj %}
+                {% for i in iobj %}
+                    <td>
+                        <font color="rgb(4, 107, 26);">Images....</font>
+                        <img src="{{media_url}}{{i.more_images}}"  height="300" width="300">
+                    </td>
+                {% endfor %}
+            {% else %}
+                <td><font color="rgb(4, 107, 26);">No Images has been uploaded..</font></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td colspan="2"><center><h2><input type="button" class="b1" name="back" value="Back" onclick="window.location='/manager/manageevent.html'"></h2></center></td>
+        </tr>
+    </table>
+</h4>
+    </center>
+    <br><br><br>
+{% endblock %}
+</body>
+</html>

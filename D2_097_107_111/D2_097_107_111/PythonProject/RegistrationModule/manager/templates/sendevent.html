@@ -1,0 +1,100 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+<head>
+    <style>
+        h4
+            {
+                padding:20px 10px;
+                font-size:35px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            table.Q
+            {
+                width:600px;
+                color:rgb(9, 9, 73);
+                border:5px solid rgb(9, 9, 73);
+            }
+            tr,td,th
+            {
+                padding:5px 5px;
+            }
+            input.b1
+            {
+                padding:15px 20px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+    </style>
+</head>
+<center>
+<h4>
+    <font size='5'>
+    {% if list %}
+        {% for each in list%}
+        <table style="border:4px solid rgb(9, 9, 73); width:100%;">
+        <tr>
+            <th colspan="2"><font size="7" face="verdana"><b>{{each.event_name}}</b></font></th>
+        </tr>
+        <tr>
+            <td><center><img src="{{media_url}}{{each.event_image}}" height="300" width="300"></center></td>
+            <td>
+            <table class="T" >
+            <tr>
+                <td>Event Type :</td>
+                <td>{{each.event_type}}</td>
+            </tr>
+            <tr>
+                <td>Event Date :</td>
+                <td>{{each.event_date}}</td>
+            </tr>
+            <tr>
+                <td>Event Duration :</td>
+                <td>{{each.event_duration}}</td>
+            </tr>
+            <tr>
+                <td>Event Time :</td>
+                <td>{{each.event_time}}</td>
+            </tr>
+            <tr>
+                <td>Event Venue :</td>
+                <td>{{each.event_venue}}</td>
+            </tr>
+            <tr>
+                <td>Event Description :</td>
+                <td>{{each.event_description}}</td>
+            </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <form action="/manager/send/" method="post">{% csrf_token %}
+                <input type="hidden" name="event_id" value="{{each.event_ID}}">
+                <td colspan="2"><center><h2><input type="submit" class="b1" name="submit" value="Send For approval"></h2></center></td>
+            </form>
+        </tr>
+        </table>
+        <br>
+        {% endfor %}
+    {% else %}
+        <font color='rgb(9, 9, 73)'><center><table><tr><center><td>No such event is present to sent it  for approval.</td></center></tr></table></center></font>
+    {% endif %}
+</font>
+</center>
+</body>
+</html>
+{% endblock%}

@@ -1,0 +1,87 @@
+{% extends 'base3.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            input.s1
+            {
+                font-size:15px;
+                padding: 10px 20px;
+                font-weight:800;
+                color:indigo;
+                border-radius: 50px;
+            }
+            h3
+            {
+                color:white;
+            }
+        </style>
+        <script>
+            function fn(ev,object)
+            {
+                var d1=object.value;
+                d1= new Date(d1);
+                d2=new Date();
+                if(d1<d2)
+                {
+                    window.alert(d1.getDate()+"-"+(d1.getMonth()+1)+"-"+d1.getFullYear()+" date is before the current date.Choose the furture date to be booked for your");
+                }
+            }
+        </script>
+    </head>
+<body>
+    {% if requestmade %}
+    <h3>Your request is made successfully.</h3>
+    {% else %}
+    {% if not submit %}
+        {% if not etype %}
+            <h3>No eventtype is added yet.</h3>
+        {% else %}
+        <form action="/customer/searchevent/" method="post">{% csrf_token %}
+        <center>
+            <table>
+            <tr>
+                <td>Event Type:</td>
+                <td>
+                    <select name="eventtype">
+                        <option name="--select type--">--select type--</option>
+                        {% for i in etype%}
+                            <option name="{{i}}">{{i}}</option>
+                        {% endfor %}
+                        <option name="other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="3">(If other event type,please specify)</font></td>
+                <td><input type="text" name="event_type2"></td>
+            </tr>
+            <tr>
+                <td>Event Vanue:</td>
+                <td><input type="text" name="eventvenue"></td>
+            </tr>
+            <tr>
+                <td>Event Date:</td>
+                <td><input type="date" id="date" name="eventdate" onchange="fn('change',this);"></td>
+            </tr>
+            <tr>
+                <td>Event Time:</td>
+                <td><input type="time" name="eventtime" step="1"> (In 24 hours format)</td>
+            </tr>
+            <tr>
+                <td>Event Cost:</td>
+                <td><input type="text" name="eventcost"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" class="s1" name="search" value="Request"></td>
+            </tr>
+            </table>
+        </form>
+        {% endif%}
+    {% endif %}
+    {% endif %}
+    </center>
+    <br>
+</body>
+</html>
+{% endblock %}

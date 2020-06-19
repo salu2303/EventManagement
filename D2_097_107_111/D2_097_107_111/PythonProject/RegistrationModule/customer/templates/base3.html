@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customer Page</title>
+        <style>
+            body,html
+            {
+                height:100%;
+            }
+            div
+            {
+                font-size:60px;
+                border-radius: 100px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                color:honeydew;
+                background-color:darkgreen;
+                background-image: url("/static/C_B_BASE.webp");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            div.menu
+            {
+                background-image: url("/static/C_B_BASE.webp");
+                text-align: center;
+                border-radius: 40px;
+                font-size: 30px;
+            }
+            input.button
+            {
+                opacity: 1.0;
+                font-size:20px;
+                padding: 10px 40px;
+                font-weight:800;
+                color:indigo;
+                border-radius: 50px;
+            }
+            body
+		    {
+			    background-image: url("/static/C_B_H.jpg");
+			    background-size:100% 100%;
+                background-position:cover;
+                background-attachment:fixed;
+                background-repeat:no-repeat;
+		    }
+        </style>
+    </head>
+    <body>
+        <div><center>Welcome To Home</center></div><br>
+        <div class="menu">
+        <br>
+        <input type="button" class="button" name="homepage" value="Home Page" onclick="window.location='/customer/homepage/'">
+        <input type="button" class="button" name="bookevent" value="Book A Event" onclick="window.location='/customer/bookevent/'">
+        <input type="button" class="button" name="requestedevent" value="Requested Event" onclick="window.location='/customer/viewrequestedeventstatus/'">
+        <input type="button" class="button" name="help" value="Help" onclick="window.location='/customer/help.html'">
+        <input type="button" class="button" name="profile" value="Profile" onclick="window.location='/customer/profile/'">
+        <input type="button" class="button" name="logout" value="Logout" onclick="window.location='/customer/clogout/'">
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

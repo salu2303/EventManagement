@@ -1,0 +1,94 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+              document.getElementById("b1").click();
+           });
+          </script>
+        <style>
+            input.b1
+            {
+                padding:15px 20px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+            input.text
+            {
+                font-size: 20px;
+                background: transparent;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:rgb(9, 9, 73);
+                border-width:3px;
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            td
+            {
+                padding:7px 20px;
+            }
+            textarea.t1
+            {
+                background: transparent;
+                border-color:rgb(9, 9, 73);
+                border-width:3px;
+                font-size:20px;
+            }
+            [placeholder]:focus::-webkit-input-placeholder {
+                transition: text-indent 0.5s 0.5s ease;
+                text-indent: -100%;
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <br>
+        {% if "manager" in request.session %}
+        <center>
+        <h4>
+            <form action="/manager/givefeedback/" method="post">{% csrf_token %}
+                <table>
+                    <tr>
+                        <td colspan="2"><center><h2>Give Feedback</h2></center></td>
+                    </tr>
+                    <tr>
+                        <td>Feedback</td>
+                        <td><textarea rows="4" cols="35" name="feedback" class="t1" placeholder="Enter your feedback here" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><center><input type="submit" class="b1" name="submit" value="Send The Feedback"></center></td>
+                    </tr>
+                </table>
+            </form>
+            {% if msg %}
+                {{msg}}
+            {% endif %}
+        </h4>
+        </center>
+        {% else %}
+            <input type="button" name="b1" id="b1" onclick="window.location='/manager/managerlogin/'">
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

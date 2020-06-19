@@ -1,0 +1,82 @@
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:60%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+            td
+            {
+                padding:7px 20px;
+            }
+        </style>
+    </head>
+<body>
+    <center>
+        <h4>
+        You have uploaded this event...
+        <table>
+            <tr>
+                <th><font size="7" face="verdana" color="darkblue"><b>{{eventobj.event_name}}</b></font></th><th></th>
+            </tr>
+            <tr>
+                <td><img src="{{media_url}}{{eventobj.event_image}}" height="300" width="300"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Event Type :</td>
+                <td>{{eventobj.event_type}}</td>
+            </tr>
+            <tr>
+                <td>Event Status :</td>
+                <td>{{event_status}}</td>
+            </tr>
+            <tr>
+                <td>Event Date :</td>
+                <td>{{eventobj.event_date}}</td>
+            </tr>
+            <tr>
+                <td>Event Duration :</td>
+                <td>{{eventobj.event_duration}}</td>
+            </tr>
+            <tr>
+                <td>Event Time :</td>
+                <td>{{eventobj.event_time}}</td>
+            </tr>
+            <tr>
+                <td>Event Venue :</td>
+                <td>{{eventobj.event_venue}}</td>
+            </tr>
+            <tr>
+                <td>Event Description :</td>
+                <td>{{eventobj.event_description}}</td>
+            </tr>
+            <tr>
+                {% for v in vobj %}
+                <td>
+                    <video height="300" width="300" controls>
+                        <source src="{{v.more_videos.url}}" type="video/mp4">
+                    </video>
+                </td>
+                {% endfor %}
+                <td></td>
+            </tr>
+            <tr>
+                {% for i in iobj %}
+                    <td><img src="{{media_url}}{{i.more_images}}" height="300" width="300"></td>
+                {% endfor %}
+            </tr>
+        </table>
+        </h4>
+    </center>
+</body>
+</html>
+{% endblock %}

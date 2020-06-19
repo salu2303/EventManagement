@@ -1,0 +1,85 @@
+{% extends 'base1.html'%}
+{% block content%}
+{% load mathfilters %}
+<html>
+    <head>
+        <style>
+            div.div
+		    {
+		        padding:15px 55px;
+		        border-radius:10px;
+		        width:75%;
+		        background-color:rgb(255,255,255,0.5);
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:80%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <div class="div">
+        <p>
+            <h2>All Events Types:
+            <select  name="sort" style="width: 250px; height: 50px; font-size:20px;" onchange="document.location.href=this.value">
+                <option>--Select type--</option>
+                <option value="/adminmodule/approvedevent/">Approved Events</option>
+                <option value="/adminmodule/unapprovedevent/">Unapproved Events</option>
+                <option value="/adminmodule/rejectedevent/">Rejected Events</option>
+                <option value="/adminmodule/customerrequestedevent/">Customer Requested Events</option>
+                <option value="/adminmodule/allevent/">All Events</option>
+            </select>
+            </h2>
+        </p>
+        <center>
+            <h4>
+            <br>
+            {% if eventobj %}
+            <table>
+                <tr>
+                    <td colspan="3"><center><h2>Unapproved Events</h2></center></td>
+                </tr>
+                {% with i=0 %}
+                    {% for each in eventobj %}
+                        {% if forloop.counter|mod:"3" == 1%}
+                            <tr></tr>
+                <!--<td width="10%"><center>{{forloop.counter|intdiv:"3" |add:"1"}}</center></td>-->
+                        {% endif %}
+                        <td>
+                        <center>
+                            <table border="7" style="border-color:rgb(255, 255, 255);">
+                                <tr><td><img height="200" width="200" src="{{media_url}}{{each.event_image}}" height="300" width="300"></td></tr>
+                                <tr><td>Event Name : {{each.event_name}}</td></tr>
+                                <tr><td>Event Venue :{{each.event_venue}}</td></tr>
+                                <tr><td>
+                                    <form action="/adminmodule/moredetails/" method="post">{% csrf_token %}
+                                        <input type="hidden" name="eventid" value="{{each.event_ID}}">
+                                        <input type="hidden" name="eventstatus" value="unapproved">
+                                        <input type="submit" name="submit" class="submit" value="More Details">
+                                    </form>
+                                </td></tr>
+                            </table>
+                        </center>
+                        </td>
+                    {% endfor %}
+                    {% endwith %}
+            </table>
+            {% else %}
+                <table>
+                    <tr>
+                        <td><center><h3>No such Unapproved Events is present.</h3></center></td>
+                    </tr>
+                </table>
+            {% endif %}
+            </h4>
+        </center>
+    </body>
+</html>
+{% endblock %}

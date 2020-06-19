@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'base2.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+              document.getElementById("b1").click();
+           });
+          </script>
+        <style>
+            input.b1
+            {
+                padding:15px 20px;
+                font-size:23px;
+                background-color:rgb(224,32,90,0.8);
+                color:white;
+                font-weight:lighter;
+                border-radius:10px;
+                border:none;
+                cursor:pointer;
+            }
+            input.b1:hover
+            {
+                background-color:#e0205a;
+                font-weight:bold;
+            }
+            h2
+            {
+                font-size:45px;
+                color:rgb(9, 9, 73);
+            }
+            h4
+            {
+                padding:20px 10px;
+                font-size:25px;
+                color:rgb(9, 9, 73);
+                background-color:rgb(255,255,255,0.5);
+                width:60%;
+                border:1px solid white;
+                border-radius:10px;
+            }
+        </style>
+    </head>
+<body>
+<center>
+    <h4>
+    <table>
+        <ul style="list-style-type:square;">
+        <tr>
+            <td><center><h2>Manage Your Events</h2></center></td>
+        </tr>
+        <tr><td><li><input type="button" class="b1" name="createevent" value="Create Event" onclick="window.location='/manager/createevent.html'"></li></td></tr>
+        <tr><td><li><input type="button" class="b1" name="updateevent" value="Update Event" onclick="window.location='/manager/mupdateevent.html'"></li></td></tr>
+        <tr><td><li><input type="button" class="b1" name="viewcreatedevent" value="View Created Event" onclick="window.location='/manager/viewcreatedevent/'"></li></td></tr>
+        <tr><td><li><input type="button" class="b1" name="viewapprovedevent" value="View Approved Event" onclick="window.location='/manager/viewapprovedevent/'"></li></td></tr>
+        <tr><td><li><input type="button" class="b1" name="viewrequestedevent" value="View Requested Events" onclick="window.location='/manager/viewrequestedevents/'"></li></td></tr>
+        <tr><td><li><input type="button" class="b1" name="viewrejectedevent" value="View Rejected Event" onclick="window.location='/manager/viewrejectedevent/'"></li></td></tr>
+        <tr><td><li><input type="button" class="b1" name="sendevent" value="Send event for approval" onclick="window.location='/manager/sendevent/'"></li></td></tr>
+    </table>
+    </h4>
+</center>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,350 @@
+{% block content %}
+<html>
+    <head>
+    </head>
+    <body>
+        <!--#----------------------------------------->
+        {% if type == "Images" %}
+            <H2>Images</H2>
+            <table border="2">
+                <tr>
+                    <th>event_ID</th>
+                    <th>more_images</th>
+                </tr>
+                {% for each in iobj %}
+                <tr>
+                    <td>{{each.event_ID}}</td>
+                    <td>{{each.more_images}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if type == "Videos" %}
+            <H2>Videos</H2>
+            <table border="2">
+                <tr>
+                    <th>event_ID</th>
+                    <th>more_videos</th>
+                </tr>
+                {% for each in vobj %}
+                <tr>
+                    <td>{{each.event_ID}}</td>
+                    <td>{{each.more_videos}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if type == "Customer" %}
+            <H2>Customer</H2>
+            <table border="2">
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mobileno</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+                {% for each in cobj %}
+                <tr>
+                    <td>{{each.c_username}}</td>
+                    <td>{{each.c_name}}</td>
+                    <td>{{each.c_address}}</td>
+                    <td>{{each.c_mobileno}}</td>
+                    <td>{{each.c_email}}</td>
+                    <td>{{each.c_password}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <!--#----------------------------------------->
+        {% if type == "Manager" %}
+            <H2>Manager</H2>
+            <table border="2">
+                <tr>
+                    <th>Event Type</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mobileno</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+                {% for each in mobj %}
+                <tr>
+                    <td>{{each.m_event_type}}</td>
+                    <td>{{each.m_username}}</td>
+                    <td>{{each.m_name}}</td>
+                    <td>{{each.m_address}}</td>
+                    <td>{{each.m_mobileno}}</td>
+                    <td>{{each.m_email}}</td>
+                    <td>{{each.m_password}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <!--#----------------------------------------->
+        {% if type == "Admin" %}
+            <H2>Admin</H2>
+            <table border="2">
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+                {% for each in aobj %}
+                <tr>
+                    <td>{{each.AD_ID}}</td>
+                    <td>{{each.AD_password}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <!--#----------------------------------------->
+        {% if type == "CustomerEvent" %}
+            <H2>CustomerEvent</H2>
+            <table border="2">
+                <tr>
+                    <th>Customer Username</th>
+                    <th>Event Type</th>
+                    <th>Event Venue</th>
+                    <th>Event Cost</th>
+                    <th>Event Time</th>
+                    <th>Event Date</th>
+                    <th>Event Status</th>
+                </tr>
+                {% for each in ceobj %}
+                <tr>
+                    <td>{{each.c_username}}</td>
+                    <td>{{each.event_type}}</td>
+                    <td>{{each.event_venue}}</td>
+                    <td>{{each.event_cost}}</td>
+                    <td>{{each.event_time}}</td>
+                    <td>{{each.event_date}}</td>
+                    <td>{{each.event_status}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <!--#----------------------------------------->
+        {% if type == "AdminEvent" %}
+            <H2>AdminEvent</H2>
+            <table border="2">
+                <tr>
+                    <th>Admin Id</th>
+                    <th>Event Id</th>
+                </tr>
+                {% for each in aeobj %}
+                <tr>
+                    <td>{{each.AD_ID}}</td>
+                    <td>{{each.event_ID}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <!--#----------------------------------------->
+        {% if type == "ManagerEvent" %}
+            <H2>ManagerEvent</H2>
+            <table border="2">
+                <tr>
+                    <th>Manager Username</th>
+                    <th>Event Id</th>
+                    <th>Manager Event Status</th>
+                </tr>
+                {% for each in meobj %}
+                <tr>
+                    <td>{{each.m_username}}</td>
+                    <td>{{each.event_ID}}</td>
+                    <td>{{each.m_event_status}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <!--#----------------------------------------->
+        {% if type == "Event" %}
+            <H2>Event</H2>
+            <table border="2">
+                <tr>
+                    <th>Event ID</th>
+                    <th>Event name</th>
+                    <th>Event Type</th>
+                    <th>Event Duration</th>
+                    <th>Event Time</th>
+                    <th>Event Date</th>
+                    <th>Event Venue</th>
+                    <th>Event Description</th>
+                    <th>Event Contact No</th>
+                    <th>Event Image</th>
+                </tr>
+                {% for each in eobj %}
+                <tr>
+                    <td>{{each.event_ID}}</td>
+                    <td>{{each.event_name}}</td>
+                    <td>{{each.event_type}}</td>
+                    <td>{{each.event_duration}}</td>
+                    <td>{{each.event_time}}</td>
+                    <td>{{each.event_date}}</td>
+                    <td>{{each.event_venue}}</td>
+                    <td>{{each.event_description}}</td>
+                    <td>{{each.event_contact_no}}</td>
+                    <td>{{each.event_image}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if type == "all" %}
+            <H2>Customer</H2>
+            <table border="2">
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mobileno</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+                {% for each in cobj %}
+                <tr>
+                    <td>{{each.c_username}}</td>
+                    <td>{{each.c_name}}</td>
+                    <td>{{each.c_address}}</td>
+                    <td>{{each.c_mobileno}}</td>
+                    <td>{{each.c_email}}</td>
+                    <td>{{each.c_password}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <H2>Manager</H2>
+            <table border="2">
+                <tr>
+                    <th>Event Type</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mobileno</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+                {% for each in mobj %}
+                <tr>
+                    <td>{{each.m_event_type}}</td>
+                    <td>{{each.m_username}}</td>
+                    <td>{{each.m_name}}</td>
+                    <td>{{each.m_address}}</td>
+                    <td>{{each.m_mobileno}}</td>
+                    <td>{{each.m_email}}</td>
+                    <td>{{each.m_password}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <H2>Admin</H2>
+            <table border="2">
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+                {% for each in aobj %}
+                <tr>
+                    <td>{{each.AD_ID}}</td>
+                    <td>{{each.AD_password}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <H2>CustomerEvent</H2>
+            <table border="2">
+                <tr>
+                    <th>Customer Username</th>
+                    <th>Event Type</th>
+                    <th>Event Venue</th>
+                    <th>Event Cost</th>
+                    <th>Event Time</th>
+                    <th>Event Date</th>
+                    <th>Event Status</th>
+                </tr>
+                {% for each in ceobj %}
+                <tr>
+                    <td>{{each.c_username}}</td>
+                    <td>{{each.event_type}}</td>
+                    <td>{{each.event_venue}}</td>
+                    <td>{{each.event_cost}}</td>
+                    <td>{{each.event_time}}</td>
+                    <td>{{each.event_date}}</td>
+                    <td>{{each.event_status}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <H2>AdminEvent</H2>
+            <table border="2">
+                <tr>
+                    <th>Admin Id</th>
+                    <th>Event Id</th>
+                </tr>
+                {% for each in aeobj %}
+                <tr>
+                    <td>{{each.AD_ID}}</td>
+                    <td>{{each.event_ID}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <H2>ManagerEvent</H2>
+            <table border="2">
+                <tr>
+                    <th>Manager Username</th>
+                    <th>Event Id</th>
+                    <th>Manager Event Status</th>
+                </tr>
+                {% for each in meobj %}
+                <tr>
+                    <td>{{each.m_username}}</td>
+                    <td>{{each.event_ID}}</td>
+                    <td>{{each.m_event_status}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <H2>Event</H2>
+            <table border="2">
+                <tr>
+                    <th>Event ID</th>
+                    <th>Event name</th>
+                    <th>Event Type</th>
+                    <th>Event Duration</th>
+                    <th>Event Time</th>
+                    <th>Event Date</th>
+                    <th>Event Venue</th>
+                    <th>Event Description</th>
+                    <th>Event Contact No</th>
+                    <th>Event Image</th>
+                </tr>
+                {% for each in eobj %}
+                <tr>
+                    <td>{{each.event_ID}}</td>
+                    <td>{{each.event_name}}</td>
+                    <td>{{each.event_type}}</td>
+                    <td>{{each.event_duration}}</td>
+                    <td>{{each.event_time}}</td>
+                    <td>{{each.event_date}}</td>
+                    <td>{{each.event_venue}}</td>
+                    <td>{{each.event_description}}</td>
+                    <td>{{each.event_contact_no}}</td>
+                    <td>{{each.event_image}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

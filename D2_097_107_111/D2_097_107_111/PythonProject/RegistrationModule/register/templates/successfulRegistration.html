@@ -1,0 +1,102 @@
+{% extends 'base.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            function myFunction()
+            {
+                var x = document.getElementById("myInput");
+                if (x.type === "password")
+                {
+                    x.type = "text";
+                }
+                else
+                {
+                    x.type = "password";
+                }
+            }
+        </script>
+        <style>
+            body
+		    {
+			    background-image: url('/static/C_B_R_S.jpg');
+			    background-position: center;
+			    background-repeat: no-repeat;
+			    background-size: cover;
+		    }
+            input.button
+            {
+                font-size: 15px;
+                padding: 7px 15px;
+                font-weight:800;
+                color:rgb(153, 8, 88);
+                border-radius: 50px;
+                border: 1px solid rgb(153, 8, 88);
+                cursor:pointer;
+            }
+            input.button:hover
+            {
+                background-color:rgb(153, 8, 88);
+                color: white;
+            }
+            H1
+            {
+                padding : 25px;
+                font-size:65px;
+                color:rgb(153, 8, 88);
+            }
+            table
+            {
+                color:rgb(153, 8, 88);
+                background-color:rgb(255, 217, 233);
+                font-size: x-large;
+                border-width: 50px;
+                border-color: rgb(153, 8, 88);
+                font-weight: bolder;
+            }
+            td
+            {
+                border:none;
+            }
+        </style>
+    </head>
+<body>
+    <center>
+    <H1>Successfully registered ...</H1>
+    <table border="2" height="50%" width="40%">
+        <tr>
+            <td><center>Name</center></td>
+            <td><center>{{name}}</center></td>
+        </tr>
+        <tr>
+            <td><center>Address</center></td>
+            <td><center>{{address}}</center></td>
+        </tr>
+        <tr>
+            <td><center>Mobile no</center></td>
+            <td><center>{{mobile_no}}</center></td>
+        </tr>
+        <tr>
+            <td><center>Email</center></td>
+            <td><center>{{email}}</center></td>
+        </tr>
+        <tr>
+            <td><center>Username</center></td>
+            <td><center>{{username}}</center></td>
+        </tr>
+        <tr>
+            <td><center>Password</center></td>
+            <td><center>
+            <input type="password" value="FakePSW" id="myInput">
+            <input type="checkbox" onclick="myFunction()">Show Password
+            </center></td>
+        </tr>
+    </table>
+    <br><br>
+    <form action="/customer/customerlogin/" method="post">{% csrf_token %}
+        <input type="submit" name="button" class="button" value="Login">
+    </form>
+    </center>
+</body>
+</html>
+{% endblock%}

@@ -1,0 +1,97 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            table
+            {
+                border-collapse: collapse;
+                border-style: solid;
+                border-color: darkblue;
+                width: 300;
+                height: 300;
+            }
+            th, td
+            {
+                text-align: left;
+                padding: 8px;
+                font-size:x-large;
+            }
+
+            tr:nth-child(even)
+            {
+                background-color: #f2f2f2
+            }
+
+            th
+            {
+                background-color: #4CAF50;
+                color: white;
+            }
+            img.i1
+            {
+                border: 5px solid #ddd;
+                border-radius: 5%;
+                padding: 5px;
+                width: 100px;
+                height: 90px;
+            }
+        </style>
+    </head>
+<body>
+    <center>
+    <table>
+        <tr>
+            <th><H2>You have {{eventmode}} this event...</H2></th>
+        </tr>
+        <tr>
+            <th><font size="7" face="verdana" color="darkblue"><b>{{eventobj.event_name}}</b></font></th><th></th>
+        </tr>
+        <tr>
+            <td><img src="{{media_url}}{{eventobj.event_image}}" class="i1" height="300" width="300"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Event Type :</td>
+            <td>{{eventobj.event_type}}</td>
+        </tr>
+        <tr>
+            <td>Event Date :</td>
+            <td>{{eventobj.event_date}}</td>
+        </tr>
+        <tr>
+            <td>Event Duration :</td>
+            <td>{{eventobj.event_duration}}</td>
+        </tr>
+        <tr>
+            <td>Event Time :</td>
+            <td>{{eventobj.event_time}}</td>
+        </tr>
+        <tr>
+            <td>Event Venue :</td>
+            <td>{{eventobj.event_venue}}</td>
+        </tr>
+        <tr>
+            <td>Event Description :</td>
+            <td>{{eventobj.event_description}}</td>
+        </tr>
+        <tr>
+            {% for v in vobj %}
+            <td>
+                <video height="300" width="300" controls>
+                    <source src="{{v.more_videos.url}}" type="video/mp4">
+                </video>
+            </td>
+            {% endfor %}
+            <td></td>
+        </tr>
+        <tr>
+        {% for i in iobj %}
+                <td><img src="{{media_url}}{{i.more_images}}" height="300" width="300"></td>
+        {% endfor %}
+        </tr>
+    </table>
+    </center>
+</body>
+</html>
+{% endblock %}

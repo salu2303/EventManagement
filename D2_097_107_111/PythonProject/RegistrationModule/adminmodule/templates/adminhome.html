@@ -1,0 +1,45 @@
+{% extends 'base1.html'%}
+{% block content %}
+<html>
+    <head>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+              document.getElementById("b1").click();
+           });
+          </script>
+        <style>
+            h4{
+                border-color: rgb(0,0,75);
+                border-style: solid;
+                border-width: 10px;
+                font-size:xx-large;
+            }
+            input
+            {
+                font-size:x-large;
+            }
+            H1
+            {
+                color:rgb(9, 9, 73);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="t1">
+            <center>
+                <table>
+                    {%if "admin" in request.session %}
+                    <tr>
+                        <td>{{request.session.name}}<H1>Welcome to admin home</H1></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td><input type="button" name="b1" id="b1" onclick="window.location='/adminmodule/adminlogin/'"></td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </center>
+        </div>
+    </body>
+</html>
+{% endblock %}

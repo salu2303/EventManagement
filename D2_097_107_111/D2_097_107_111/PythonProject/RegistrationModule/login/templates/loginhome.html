@@ -1,0 +1,83 @@
+{% extends 'base0.html'%}
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            input.button
+            {
+                font-size:25px;
+                padding: 35px 100px;
+                font-weight:800;
+                color:indigo;
+                border-radius: 15px 50px;
+                border-width:7px;
+                width:100%;
+                border-color:lightgray;
+                cursor:pointer;
+            }
+            input.button:hover
+            {
+                border-color:rgb(235, 13, 79);
+                background-color:lightpink;
+            }
+            div
+            {
+                display: inline-block;
+            }
+            H1
+            {
+                color:white;
+                font-size:65px;
+            }
+            h4
+            {
+                color:white;
+                font-size:35px;
+                border:5px outset white;
+                background-color:indigo;
+                border-radius:100px;
+            }
+            img
+            {
+                height:300px;
+                width:300px;
+                border-color:white;
+                border-width:5px;
+                border-radius:100%;
+                border:10px outset white;
+            }
+            td
+            {
+                padding:15px;
+            }
+        </style>
+    </head>
+<body>
+    <center><H1>Welcome to the Event Management Website</H1></center>
+    <table>
+        <tr>
+            <td>
+                    <table>
+                        <tr><td><input type="submit" class="button" name="admin" onclick="window.location='/adminmodule/adminlogin/'" value="ADMIN"></td></tr>
+                        <tr><td><input type="submit" class="button" name="customer" onclick="window.location='/customer/customerlogin/'" value="CUSTOMER"></td></tr>
+                        <tr><td><input type="submit" class="button" name="manager"  onclick="window.location='/manager/managerlogin/'" value="MANAGER"></td></tr>
+                    </table>
+            </td>
+            <td>
+                <img src="/static/Home_I1.jpg"/>
+                <br><h4><center>Party Event</center></h4>
+            </td>
+            <td>
+                <img src="/static/Home_I2.jpg"/>
+                <br><h4><center>College Event</center></h4>
+            </td>
+            <td>
+                <img src="/static/Home_I3.jpeg"/>
+                <br><h4><center>Family Event</center></h4>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base3.html'%}
+{% block content %}
+<html>
+    <head>
+        <style>
+            div.c
+            {
+                font-size: 25px;
+                color: whitesmoke;
+            }
+            h3
+            {
+                color:white;
+            }
+        </style>
+    </head>
+<body>
+{% if not ceobj %}
+    <h3>No request is made by you uptil now.</h3><br>
+{% else %}
+    <br><br>
+    <div class="c">
+    <center>
+    <table border="2" style="border:7px solid rgb(255, 255, 255);border-collapse:collapse;">
+    <tr>
+        <th>Manager username</th>
+        <th>Customer username</th>
+        <th>Event Type</th>
+        <th>Event Venue</th>
+        <th>Event Cost</th>
+        <th>Event Time</th>
+        <th>Event Date</th>
+        <th>Event Status</th>
+    </tr>
+    {% for each in ceobj %}
+    <tr>
+        <td>{{each.m_username}}</td>
+        <td>{{each.c_username_id}}</td>
+        <td>{{each.event_type}}</td>
+        <td>{{each.event_venue}}</td>
+        <td>{{each.event_cost}}</td>
+        <td>{{each.event_time}}</td>
+        <td>{{each.event_date}}</td>
+        {% if each.event_status == "requested"%}
+            <td>requested</td>
+        {% else %}
+            <td>{{each.event_status}}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </table>
+    <br><br>
+    </center>
+    </div>
+</div>
+</body>
+</html>
+{% endif %}
+{% endblock %}
